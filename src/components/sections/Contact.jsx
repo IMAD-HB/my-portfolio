@@ -9,23 +9,19 @@ const Contact = () => {
     message: "",
   });
 
-  const SERVICE_ID = "service_q65iw0v";
-  const TEMPLATE_ID = "template_c3p337e";
-  const PUBLIC_KEY = "6NBJp8fnx_H1ttjUb";
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
     emailjs
       .send(
-        SERVICE_ID,
-        TEMPLATE_ID,
+        import.meta.env.VITE_SERVICE_ID,
+        import.meta.env.VITE_TEMPLATE_ID,
         {
           from_name: formData.name,
           email: formData.email,
           message: formData.message,
         },
-        PUBLIC_KEY
+        import.meta.env.VITE_PUBLIC_KEY
       )
       .then(
         (result) => {
