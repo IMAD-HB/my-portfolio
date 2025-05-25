@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import RevealOnScroll from "./../RevealOnScroll.jsx";
+import emailjs from "emailjs-com";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -9,17 +10,34 @@ const Contact = () => {
   });
 
   const SERVICE_ID = "service_q65iw0v";
-  const TEMPLATE_ID = "service_q65iw0v";
+  const TEMPLATE_ID = "template_c3p337e";
   const PUBLIC_KEY = "6NBJp8fnx_H1ttjUb";
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    setFormData({
-      name: "",
-      email: "",
-      message: "",
-    });
+    emailjs
+      .send(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        {
+          from_name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        },
+        PUBLIC_KEY
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+          alert("Message sent successfully!");
+          setFormData({ name: "", email: "", message: "" });
+        },
+        (error) => {
+          console.error(error.text);
+          alert("Failed to send message. Please try again.");
+        }
+      );
   };
 
   return (
@@ -28,7 +46,7 @@ const Contact = () => {
       className="min-h-screen flex items-center justify-center py-20"
     >
       <RevealOnScroll>
-        <div className="px-4 w-150">
+        <div className="px-4 md:w-150 sm:max-w-md md:max-w-xl lg:max-w-2xl">
           <h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-teal-400 bg-clip-text text-transparent to-green-500 text-center">
             Get In Tech
           </h2>
