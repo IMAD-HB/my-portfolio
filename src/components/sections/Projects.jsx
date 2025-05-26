@@ -171,7 +171,7 @@ const Projects = () => {
 
               <div className="flex justify-between items-center">
                 <a
-                  href="https://chef-claude-6z0x963qm-habbi-imad-eddines-projects.vercel.app"
+                  href="https://chef-claude-five.vercel.app"
                   target="_blank"
                   className="text-green-400 hover:text-green-300 transition-colors my-4"
                 >
